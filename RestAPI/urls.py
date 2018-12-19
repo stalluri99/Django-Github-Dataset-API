@@ -17,8 +17,8 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     # url(r'^events/$', views.events_index),
     url(r'^erase/$', views.erase_all_events),
-    url(r'^actors/$', views.actors_view_index),
+    url(r'^actors/$', views.actors_index),
     url(r'^actors/streak/$', views.actors_by_streak),
-    url(r'^events/actors/(?P<id>[0-9]+)/$', views.actor_events),
+    url(r'^events/actors/(?P<id>[0-9]+)/$', views.actor_events, name='actor_events'),
     url(r'^api-auth/', include('rest_framework.urls'), name='rest_framework')
 ]

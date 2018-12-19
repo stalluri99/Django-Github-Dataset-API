@@ -5,15 +5,16 @@ from django.shortcuts import reverse
 from django.conf import settings
 
 from django.db import models
-from .fields import TimeStampedModel
 
-class Actor(TimeStampedModel):
+
+class Actor(models.Model):
     id = models.IntegerField(primary_key=True)
     login = models.CharField(max_length=50)
     avatar_url = models.URLField()
     event_count = models.IntegerField(default=0)
     latest_event_timestamp = models.DateTimeField(blank=True, null=True)
     streak = models.IntegerField(default=0)
+    pushed_today = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('-event_count', '-latest_event_timestamp', 'login')
@@ -24,7 +25,7 @@ class Actor(TimeStampedModel):
     def actor_events_url(self):
         return settings.BASE_URL + reverse('RestAPI:actor_events', args=[self.id])
 
-class Repo(TimeStampedModel):
+class Repo(models.Model):
     id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     url = models.URLField()
@@ -32,7 +33,7 @@ class Repo(TimeStampedModel):
     def __str__(self):
         return self.name
 
-class Event(TimeStampedModel):
+class Event(models.Model):
     id = models.IntegerField(primary_key=True)
     type = models.CharField(max_length=12)
     actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
