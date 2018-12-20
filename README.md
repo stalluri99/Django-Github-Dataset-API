@@ -1,5 +1,11 @@
 # Django-Github-Dataset-API
 
+## Note
+
+This project is from a [hackerrank](https://hackerrank.com) challenge. The original repo is included as `django--github-dataset-api-bt82lb754an.zip` in the project root.
+
+## Challenge description
+
 In this challenge, you are part of a team building a git event tracking platform. One requirement is for a REST API service to provide events information using the Python Django framework. You will need to add functionality to add and delete information as well as to perform some queries. You'll be dealing with typical information for get event data like repository, actor, event type, etc. The team has come up with a set of requirements including filtering and ordering requirements, response codes and error messages for the queries you must implement.
 
 The definitions and a detail list follow. You will be graded on whether your application performs data retrieval and manipulation based on given use cases exactly as described in the requirements.
@@ -38,7 +44,7 @@ The REST service should implement the following functionalities:
 
 You should complete the given incomplete project so that it passes all the test cases when running the provided unit tests. The project by default supports the use of SQLite3 database.
 
-## Test case
+## Personal note on Test cases
 
 In the sample test case below, the line
 
@@ -46,7 +52,7 @@ In the sample test case below, the line
 self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
 ```
 
-results in `TypeError: '<' not supported between instances of 'dict' and 'dict'` because the `sorted()` function only works on lists. To test the returned data, replace that line with
+results in `TypeError: '<' not supported between instances of 'dict' and 'dict'` because python's `sorted()` function only works on lists. To test the returned data, replace that line with the one below for the tests to pass. The idea is to generate a list of `ID`s from both dictionaries and sort it.
 
 ```python
 self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
