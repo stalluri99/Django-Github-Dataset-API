@@ -44,7 +44,9 @@ The REST service should implement the following functionalities:
 
 You should complete the given incomplete project so that it passes all the test cases when running the provided unit tests. The project by default supports the use of SQLite3 database.
 
-## Personal note on Test cases
+## Personal notes
+
+### On provided test cases
 
 In the sample test case below, the line
 
@@ -109,7 +111,7 @@ class RestTestCase(TestCase):
                 self.assertEqual(response, row['response']['body'])
 ```
 
-## Summary of requirements
+### Summary of requirements
 
 Action: *REQUEST METHOD*: **url**: `status code`: Return value
 
