@@ -22,6 +22,9 @@ class Actor(models.Model):
     def __str__(self):
         return self.login
 
+    def actor_events_queryset(self):
+        return self.event_set.all().order_by('-created_at', )
+
     def actor_events_url(self):
         return settings.BASE_URL + reverse('RestAPI:actor_events', args=[self.id])
 

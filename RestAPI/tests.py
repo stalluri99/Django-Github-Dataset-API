@@ -10,6 +10,7 @@ from dateutil.parser import parse
 class RestTestCase(TestCase):
 
     def setUp(self):
+        self.maxDiff = None
         self.test_1 = []
         self.test_2 = []
         self.test_3 = []

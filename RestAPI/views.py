@@ -65,8 +65,6 @@ class EventViewSet(viewsets.ModelViewSet):
             event_type = data["type"]
             created_at = make_aware(make_datetime_object(data["created_at"]))
 
-            
-
             actor = data["actor"]
             actor_id = int(actor["id"])
             login = actor["login"]
@@ -89,32 +87,10 @@ class EventViewSet(viewsets.ModelViewSet):
 
 @api_view(['GET', 'DELETE'])
 def erase_all_events(request):
-    Event.objects.all().delete()
-    return JsonResponse({'erase' : 'Deleted all events'})
-
-# class ActorViewSet(viewsets.ModelViewSet):
-#     """Docstring"""
-#     queryset = Actor.objects.all()
-#     serializer_class = ActorSerializer
-
-#     def put(self, request, pk=None):
-#         data = request.data
-#         actor_id = data["id"]
-#         login = data["login"]
-#         avatar_url = data["avatar_url"]
-#         try:
-#             actor = Actor.objects.get(id=actor_id)
-#             actor.avatar_url = avatar_url # update the avatar_url
-
-#             if actor.login != login: # if the login has changed, return 400
-#                 actor.login = login
-#                 status = 400
-#             else:
-#                 status = 200
-#             actor.save()
-#             return HttpResponse("Actor avatar_url updated successfully", status=status)
-#         except Actor.DoesNotExist:
-#             raise Http404("Actor does not exist")
+    e = Event.objects.all()
+    n = e.count()
+    e.delete()
+    return JsonResponse({'erase' : 'Deleted {} events'.format(n)})
 
 
 @api_view(['GET', 'PUT'])

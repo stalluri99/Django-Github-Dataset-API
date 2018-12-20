@@ -8,14 +8,12 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register('events', views.EventViewSet)
-# router.register('actors', views.ActorViewSet)
 router.register('repos', views.RepoViewSet)
 
 app_name = 'RestAPI'
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    # url(r'^events/$', views.events_index),
     url(r'^erase/$', views.erase_all_events),
     url(r'^actors/$', views.actors_index),
     url(r'^actors/streak/$', views.actors_by_streak),
