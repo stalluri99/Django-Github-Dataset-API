@@ -52,7 +52,7 @@ class RestTestCase(TestCase):
                 self.assertEqual(
                     res.headers['Content-Type'], row['response']['headers']['Content-Type'])
             if row['request']['url'] in ['/actors','/actors/streak'] and row['request']['method'] == 'GET':
-                self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
+                self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
             elif row['response']['body'] != {}:
                 response = json.loads(res.text)
                 for resp in response:
@@ -84,7 +84,7 @@ class RestTestCase(TestCase):
                 self.assertEqual(
                     res.headers['Content-Type'], row['response']['headers']['Content-Type'])
             if row['request']['url'] in ['/actors','/actors/streak'] and row['request']['method'] == 'GET':
-                self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
+                self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
             elif row['response']['body'] != {}:
                 response = json.loads(res.text)
                 for resp in response:
@@ -116,7 +116,7 @@ class RestTestCase(TestCase):
                 self.assertEqual(
                     res.headers['Content-Type'], row['response']['headers']['Content-Type'])
             if row['request']['url'] in ['/actors','/actors/streak'] and row['request']['method'] == 'GET':
-                self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
+                self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
             elif row['response']['body'] != {}:
                 response = json.loads(res.text)
                 for resp in response:
@@ -148,7 +148,7 @@ class RestTestCase(TestCase):
                 self.assertEqual(
                     res.headers['Content-Type'], row['response']['headers']['Content-Type'])
             if row['request']['url'] in ['/actors','/actors/streak'] and row['request']['method'] == 'GET':
-                self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
+                self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
             elif row['response']['body'] != {}:
                 response = json.loads(res.text)
                 for resp in response:
@@ -180,7 +180,7 @@ class RestTestCase(TestCase):
                 self.assertEqual(
                     res.headers['Content-Type'], row['response']['headers']['Content-Type'])
             if row['request']['url'] in ['/actors','/actors/streak'] and row['request']['method'] == 'GET':
-                self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
+                self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
             elif row['response']['body'] != {}:
                 response = json.loads(res.text)
                 for resp in response:
