@@ -48,17 +48,19 @@ You should complete the given incomplete project so that it passes all the test 
 
 ### On provided test cases
 
-In the sample test case below, the line
+In the provided test case below, the line
 
 ```python
 self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body']))
 ```
 
-results in `TypeError: '<' not supported between instances of 'dict' and 'dict'` because python's `sorted()` function only works on lists. To test the returned data, replace that line with the one below for the tests to pass. The idea is to generate a list of `ID`s from both dictionaries and sort it.
+results in `TypeError: '<' not supported between instances of 'dict' and 'dict'` because python's `sorted()` function only works on lists. Replacing that line with
 
 ```python
 self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
 ```
+
+gives no error. The idea is to generate a list of `ID`s from both dictionaries and sort it. This change is effected in the ``working-test` branch of this repo. Running `python manage.py test` with this branch checked out produces no error.
 
 ```python
 # -*- coding: utf-8 -*-
@@ -99,7 +101,7 @@ class RestTestCase(TestCase):
                     res.headers['Content-Type'], row['response']['headers']['Content-Type'])
             if row['request']['url'] in ['/actors','/actors/streak'] and row['request']['method'] == 'GET':
                 self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
-                # self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body'])) # replace this line with the one above
+                # self.assertEqual(sorted(json.loads(res.text)), sorted(row['response']['body'])) # original test
             elif row['response']['body'] != {}:
                 response = json.loads(res.text)
                 for resp in response:
