@@ -60,7 +60,7 @@ results in `TypeError: '<' not supported between instances of 'dict' and 'dict'`
 self.assertEqual(sorted([actor["id"] for actor in json.loads(res.text)]), sorted([actor["id"] for actor in row['response']['body']]))
 ```
 
-gives no error. The idea is to generate a list of `ID`s from both dictionaries and sort it. This change is effected in the ``working-test` branch of this repo. Running `python manage.py test` with this branch checked out produces no error.
+gives no error. The idea is to generate a list of `ID`s from both dictionaries and sort it. This change is effected in the `working-test` branch of this repo. Running `python manage.py test` with this branch checked out produces no error.
 
 ```python
 # -*- coding: utf-8 -*-
